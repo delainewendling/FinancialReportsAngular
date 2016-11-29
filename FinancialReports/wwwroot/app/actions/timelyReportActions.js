@@ -9,6 +9,7 @@ export function loadTimelyReport(days) {
     return dispatch => {
         return axios.get(`/TimelyReports/${days}`)
             .then(products => {
+                console.log("here are the products", products);
                 dispatch(loadTimelyReportSuccess(products));
             })
             .catch(error => {

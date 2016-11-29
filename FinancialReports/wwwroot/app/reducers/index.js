@@ -1,7 +1,9 @@
 import { combineReducers } from 'redux';
+import productReports from './productReportReducer';
+import customerReports from './customerReportReducer';
 
 const rootReducer = combineReducers({
-  timelyReport,
-  revenueReport
+    productReports,
+    customerReports
 })
 export default rootReducer;
