@@ -7,32 +7,35 @@ import TimelyReport from '../components/TimelyReports';
 class GetTimelyReports extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            products: []
-        }
     }
     componentWillReceiveProps(nextProps) {
-        if (this.props.days != nextProps.days) {
-            const products = reportActions.loadTimelyReport(parseInt(nextProps.days))
-            this.setState({ products: Object.assign({}, products) })
+        console.log("next props", nextProps);
+        if (this.props.route.days != nextProps.route.days) {
+            reportActions.loadTimelyReport(parseInt(nextProps.route.days))
+        } else {
+            reportActions.loadTimelyReport(parseInt(this.props.route.days))
         }
-        const products = reportActions.loadTimelyReport(parseInt(this.props.days))
-        this.setState({ products: Object.assign({}, products) })
     }
     componentDidMount() {
-        const products = reportActions.loadTimelyReport(parseInt(this.props.days))
-        this.setState({ products: Object.assign({}, products) })
+        reportActions.loadTimelyReport(parseInt(this.props.route.days))
     }
     render() {
-        return ( <
-            TimelyReport header = { this.props.header }
-            products = { this.state.products }
+        return ( 
+            <TimelyReport 
+                header = { this.props.route.header }
+                products = { this.props.products }
             />
         )
     }
 }
 
-const mapStateToProps = ({ products }) => ({ products: state.products });
+// GetTimelyReports.propTypes = {
+//     header: PropTypes.string.isRequired,
+//     days: PropTypes.string.isRequired
+// }
+
+//This connects to the store. Tells redux which elements of the store you want to update or are necessary.
+const mapStateToProps = ({ products }) => ({ products });
 
 const mapDispatchToProps = (dispatch) => bindActionCreators(reportActions, dispatch);
 

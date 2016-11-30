@@ -15,10 +15,10 @@ namespace FinancialReports.Controllers
         {
             context = ctx;
         }
-        // GET api/values
-        [HttpGet]
+        // GET
+        [HttpGet("{days}")]
         //IActionResult is implemented by classes containing methods that can operate asynchronously.  
-        public IActionResult GetTimelyProductsReport([FromRoute]int days)
+        public IActionResult Get([FromRoute] int days)
         {
             IQueryable<object> productList = from prod in context.Product 
                            join li in context.LineItem 

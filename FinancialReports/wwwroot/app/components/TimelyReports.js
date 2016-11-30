@@ -3,9 +3,10 @@ import ReportRow from './ReportRow';
 import Menu from './Menu';
 
 const TimelyReport = ({header}, {products})=>{
-  console.log(header);
-    return (
-      <Menu>
+  console.log("header",header);
+    return products ? 
+      <div>
+        <Menu />
         <table className="table">
           <thead>
             <tr> <h1> {header} </h1></tr>
@@ -20,8 +21,12 @@ const TimelyReport = ({header}, {products})=>{
           )}
           </tbody>
         </table>
-      </Menu>
-    );
+      </div>
+      :
+      <div>
+        <Menu />
+        <h1> There are no products in the {header} </h1>
+      </div>
 }
 
 TimelyReport.propTypes = {

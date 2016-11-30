@@ -56,9 +56,7 @@ namespace FinancialReports
             Console.WriteLine("Configure");
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
-            DefaultFilesOptions options = new DefaultFilesOptions();
-            options.DefaultFileNames.Clear();
-            options.DefaultFileNames.Add("dist/index.html");
+            app.UseDefaultFiles();
             app.UseStaticFiles();
             app.UseFileServer(enableDirectoryBrowsing: true);
             
